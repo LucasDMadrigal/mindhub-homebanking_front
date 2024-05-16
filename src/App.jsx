@@ -10,9 +10,9 @@ function App() {
   return (
     <>
       <MainLayouts>
-        {/* <Home /> */}
+        <Home />
         {/* <Account /> */}
-        <Cards />
+        {/* <Cards /> */}
         {/* <Loans /> */}
         {/* <Transactions /> */}
       </MainLayouts>

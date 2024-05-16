@@ -1,0 +1,47 @@
+.main-card {
+  width: 546px;
+  height: 272px;
+  background-color: var(--secound-gray);
+  padding: 1rem;
+}
+
+.main-card h5 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29.05px;
+  text-align: left;
+}
+
+.monto--container {
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem 0;
+}
+
+.monto--container span {
+  font-size: 50px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.monto--container h6 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 21.78px;
+  text-align: left;
+}
+
+.creation_date--container{
+    display: flex;
+}
+
+.creation_date--container p,
+.creation_date--container span {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29.05px;
+}
+
+.creation_date--container span {
+    margin-left: auto;
+}
