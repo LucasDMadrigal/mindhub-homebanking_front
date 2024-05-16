@@ -1,0 +1,41 @@
+.main-header{
+    height: 17vh;
+    width: 100%;
+    background-color: var(--main-black);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon--container{
+    height: 50px;
+    width: 50px;
+    background-color: var(--main-green);
+}
+
+.logout-button{
+    background-color: var(--main-gray);
+    padding: 1rem;
+    width: 72px;
+    height: 57px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+
+nav{
+    display: flex;
+    width: 75%;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+nav a{
+    background-color: var(--main-black);
+    width: 105px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid var(--main-green);
+    color: var(--main-white);
+}
