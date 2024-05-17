@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/Header.css'
-import LogoutIcon from '../assets/images/logout.svg'
+import LogoutIcon from '../assets/images/logos/logout.svg'
 
 const Header = () => {
 
