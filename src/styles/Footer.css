@@ -1,0 +1,8 @@
+footer{
+    background-color: var(--main-gray);
+}
+
+.footer_icon{
+    height: 30px;
+    width: 30px;
+}
