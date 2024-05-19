@@ -1,0 +1,29 @@
+.data-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+table {
+  min-width: 55vw;
+  border-collapse: collapse;
+  margin: 25px 0;
+  text-align: left;
+  color: #ddd;
+}
+th,
+td {
+  padding:.2rem 1.2rem;
+  font-size: .9rem;
+  border: 1px solid #ddd;
+}
+th {
+    background-color: var(--secound-gray);
+}
+
+td {
+    background-color: var(--main-gray);
+}
+
+.description-column{
+    width: 55%;
+}
