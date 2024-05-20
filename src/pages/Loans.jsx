@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Loans = () => {
   //   Mortgage
@@ -40,6 +41,9 @@ const Loans = () => {
           ))}
         </ul>
       </div>
+      <NavLink to="/new-loan">
+          <button className="get_new_acc">Solicitar un nuevo credito</button>
+         </NavLink>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import Cards from "./pages/Cards";
 import Loans from "./pages/Loans";
 import Transactions from "./pages/Transactions";
 import NewCard from "./pages/NewCard";
+import NewLoan from "./pages/NewLoan";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/loans" element={<Loans />} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/new-card" element={<NewCard />} />
+            <Route path="/new-loan" element={<NewLoan />} />
           </Routes>
         </MainLayouts>
       </BrowserRouter>
