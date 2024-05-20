@@ -48,6 +48,9 @@ const Account = () => {
           </table>
         </div>
       </div>
+      <div className="my-20 get_new--container">
+        <button className="get_new_acc">Solicitar una cuenta nueva</button>
+      </div>
       <div className="my-20 carousel--container">
         <Carousel />
       </div>

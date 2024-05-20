@@ -10,9 +10,9 @@ const Header = () => {
 
   return (
     <header className="main-header">
-      <div className="icon--container">
-        <NavLink to="/"></NavLink>
-      </div>
+      <NavLink to="/">
+        <div className="icon--container"></div>
+      </NavLink>
       <nav className="">
         <NavLink
           to="/account"
