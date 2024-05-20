@@ -1,0 +1,9 @@
+.cards--container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.main-cards--container h2{
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+}

@@ -23,3 +23,10 @@ h1 {
   line-height: 43.57px;
   text-align: left;
 }
+
+h2 {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 43.57px;
+  text-align: left;
+}
