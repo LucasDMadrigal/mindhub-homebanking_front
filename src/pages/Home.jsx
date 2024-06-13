@@ -17,6 +17,12 @@ const Home = () => {
       });
   }, []);
 
+  useEffect(() => {
+    return () => {
+      console.log("desmontando");
+    }
+  },[])
+
   return (
     <>
       <h1>Welcome, {client?.firstName}!</h1>

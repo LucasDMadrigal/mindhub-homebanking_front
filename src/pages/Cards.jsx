@@ -16,7 +16,8 @@ const Cards = () => {
       .then((data) => {
         setCards(data.cards);
         console.log(data);
-      });
+      })
+      .catch(err => console.log(err));
   }, []);
 
   useEffect(() => {
@@ -32,15 +33,22 @@ const Cards = () => {
       <div className="main-cards--container">
         <h2>Credit</h2>
         <div className="cards--container">
-          {cardCredit?.map((c, i) => (
+          {cardCredit ?
+          cardCredit?.map((c, i) => (
             <CardsElement key={i} card={c.color} />
-          ))}
+          )) :
+          <h2>NO HAY TARJETAS PARA MOSTRAR</h2> 
+        }
         </div>
         <h2>Debit</h2>
         <div className="cards--container">
-          {cardDebit?.map((c, i) => (
-            <CardsElement key={i} card={c.color} />
-          ))}
+          {
+            cardDebit ?
+            cardDebit?.map((c, i) => (
+              <CardsElement key={i} card={c.color} />
+            )) :
+            <h2>NO HAY TARJETAS PARA MOSTRAR</h2> 
+          }
         </div>
       </div>
       <div className="my-20 get_new--container">

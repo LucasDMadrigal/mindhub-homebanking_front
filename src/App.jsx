@@ -8,6 +8,7 @@ import Loans from "./pages/Loans";
 import Transactions from "./pages/Transactions";
 import NewCard from "./pages/NewCard";
 import NewLoan from "./pages/NewLoan";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <MainLayouts>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/account" element={<Account />} />
             <Route path="/cards" element={<Cards />} />
             <Route path="/loans" element={<Loans />} />
