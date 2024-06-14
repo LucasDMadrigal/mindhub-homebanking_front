@@ -5,20 +5,27 @@ import GoldCard from "../assets/images/imgs/gold_card.png";
 import PlatinumCard from "../assets/images/imgs/platinum_card.png";
 import { NavLink } from "react-router-dom";
 import CardsElement from "../components/CardsElement";
+import { useSelector } from "react-redux";
 const Cards = () => {
   const [cards, setCards] = useState();
   const [cardDebit, setCardDebit] = useState([]);
   const [cardCredit, setCardCredit] = useState([]);
-  const url = "http://localhost:8080/api";
+  // const url = "http://localhost:8080/api";
+  // useEffect(() => {
+  //   fetch(`${url}/clients/1`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setCards(data.cards);
+  //       console.log(data);
+  //     })
+  //     .catch(err => console.log(err));
+  // }, []);
+
+  const { user } = useSelector((store) => store.auth);
+
   useEffect(() => {
-    fetch(`${url}/clients/1`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCards(data.cards);
-        console.log(data);
-      })
-      .catch(err => console.log(err));
-  }, []);
+    setCards(user.cards);
+  }, [user]);
 
   useEffect(() => {
     const cardsDebit = cards?.filter((c) => c.type === "DEBIT");
@@ -33,7 +40,7 @@ const Cards = () => {
       <div className="main-cards--container">
         <h2>Credit</h2>
         <div className="cards--container">
-          {cardCredit ?
+          {cardCredit.length !== 0 ?
           cardCredit?.map((c, i) => (
             <CardsElement key={i} card={c.color} />
           )) :
@@ -43,7 +50,7 @@ const Cards = () => {
         <h2>Debit</h2>
         <div className="cards--container">
           {
-            cardDebit ?
+            cardDebit.length !== 0 ?
             cardDebit?.map((c, i) => (
               <CardsElement key={i} card={c.color} />
             )) :

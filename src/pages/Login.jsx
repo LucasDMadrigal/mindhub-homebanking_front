@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/login.css";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/actions/authActions";
+
+
 const Form = () => {
-  const [activeTab, setActiveTab] = useState("signup");
+  const [activeTab, setActiveTab] = useState("login");
   const [fields, setFields] = useState({
     firstName: "",
     lastName: "",
@@ -12,7 +16,10 @@ const Form = () => {
     loginPassword: "",
   });
 
+  const dispatch = useDispatch()
+
   const LOGIN_URL = "http://localhost:8080/api/auth/login";
+  const CURRENT_URL = "http://localhost:8080/api/auth/current";
   const REGISTER_URL = "http://localhost:8080/api/auth/register";
 
   const handleInputChange = ({ target }) => {
@@ -63,17 +70,26 @@ const Form = () => {
       email: fields.loginEmail,
       password: fields.loginPassword,
     };
-    console.log("🚀 ~ handleLogin ~ loginData.fields:", loginData.fields)
-    console.log("🚀 ~ handleLogin ~ loginData:", loginData);
 
     try {
-      const response = axios.post(LOGIN_URL, loginData);
-      let token = (await response).data;
-      console.log("🚀 ~ handleLogin ~ token:", token)
+      const response = await axios.post(LOGIN_URL, loginData);
+      let token = response.data;
+
+      const responseCurrent = await axios.get(CURRENT_URL,{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+
+      let client = responseCurrent.data
+
+      dispatch(login(client))
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
   };
+  
+  useEffect(() => {}, [])
 
   const handleRegister = () => {};
   return (
@@ -95,7 +111,7 @@ const Form = () => {
         {activeTab === "signup" && (
           <div id="signup">
             <h1>Sign Up for Free</h1>
-            <form onSubmit={handleRegister}>
+            <form className="register_form" onSubmit={handleRegister}>
               <div className="top-row">
                 <div className="field-wrap">
                   <label>
@@ -168,7 +184,7 @@ const Form = () => {
         {activeTab === "login" && (
           <div id="login">
             <h1>Welcome Back!</h1>
-            <form onSubmit={handleLogin}>
+            <form  onSubmit={handleLogin}>
               <div className="field-wrap">
                 <label>
                   Email Address<span className="req">*</span>

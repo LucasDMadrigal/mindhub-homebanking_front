@@ -4,24 +4,15 @@ import { NavLink } from "react-router-dom";
 import AccountCardElement from "../components/AccountCardElement";
 import "../styles/Home.css";
 import Carousel from "../components/Carousel";
+import { useSelector } from "react-redux";
 const Home = () => {
   const [client, setClient] = useState();
 
-  const url = "http://localhost:8080/api";
-  useEffect(() => {
-    fetch(`${url}/clients/1`)
-      .then((res) => res.json())
-      .then((data) => {
-        setClient(data);
-        console.log(data);
-      });
-  }, []);
+  const { user } = useSelector((store) => store.auth);
 
   useEffect(() => {
-    return () => {
-      console.log("desmontando");
-    }
-  },[])
+    setClient(user);
+  }, [user]);
 
   return (
     <>
