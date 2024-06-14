@@ -2,10 +2,14 @@ import React from "react";
 import "../styles/Header.css";
 import LogoutIcon from "../assets/images/logos/logout.svg";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/actions/authActions";
 
 const Header = () => {
+  const dispatch = useDispatch()
+
   const clickLogout = () => {
-    console.log("Logout clicked");
+    dispatch(logout())
   };
 
   return (

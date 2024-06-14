@@ -82,7 +82,8 @@ const Form = () => {
       })
 
       let client = responseCurrent.data
-
+      client.token = token
+      
       dispatch(login(client))
     } catch (error) {
       console.error("Error al iniciar sesión:", error);

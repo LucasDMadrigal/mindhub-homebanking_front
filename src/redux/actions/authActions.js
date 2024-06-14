@@ -1,32 +1,21 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const login = createAction("LOGIN", (user) => {
+export const login = createAction("LOGIN", (data) => {
   {
-    // const clearUser = {
-    //   name: user.firstName + " " + user.lastName,
-    //   email: user.email,
-    // };
 
-    const clearUser = {
-      
-        id: user.id,
-        firstName:user.firstName,
-        lastName: user.lastName,
-        isAdmin: user.isAdmin,
-        loans: user.loans,
-        accounts: user.accounts,
-        cards: user.cards
+    const clearData = {
+        id: data.id,
+        firstName:data.firstName,
+        lastName: data.lastName,
+        isAdmin: data.isAdmin,
+        token:data.token,
+        loans: data.loans,
+        accounts: data.accounts,
+        cards: data.cards
       }
     // }
-    return { payload: clearUser };
+    return { payload: clearData };
   }
 });
-// export const logout = createAction("LOGOUT", (user) => {
-//   {
-//     const clearUser = {
-//       name: user.firstName + " " + user.lastName,
-//       email: user.email,
-//     };
-//     return { payload: clearUser };
-//   }
-// });
+
+export const logout = createAction("LOGOUT")

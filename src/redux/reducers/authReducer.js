@@ -1,5 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { login } from "../actions/authActions";
+import { login, logout } from "../actions/authActions";
 
 const initialState = {
   loggedIn: false,
@@ -7,33 +7,36 @@ const initialState = {
   expiresIn: "",
   user: {
     id: "",
-    firstName:"",
+    firstName: "",
     lastName: "",
     isAdmin: false,
     loans: [],
     accounts: [],
-    cards: []
+    cards: [],
   },
 };
 
-const authReducer = createReducer({ initialState }, (builder) => {
+const authReducer = createReducer( initialState , (builder) => {
   builder
     .addCase(login, (state, action) => {
       return {
         ...state,
+        token: action.payload.token,
+        loggedIn: true,
         user: {
-          ...action.payload,
+          id: action.payload.id,
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+          isAdmin: action.payload.isAdmin,
+          loans: action.payload.loans,
+          accounts: action.payload.accounts,
+          cards: action.payload.cards,
         },
       };
     })
-    // .addCase(logout, (state, action) => {
-    //   return {
-    //     ...state,
-    //     user: {
-    //       ...action.payload,
-    //     },
-    //   };
-    // });
+    .addCase(logout, (state, action) => {
+      return initialState;
+    });
 });
 
-export default authReducer
+export default authReducer;
