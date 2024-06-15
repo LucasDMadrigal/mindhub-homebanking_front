@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../styles/login.css";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/actions/authActions";
+import { Navigate, redirect } from "react-router-dom";
 
+const Login = () => {
+  const { loggedIn } = useSelector((store) => store.auth);
 
-const Form = () => {
   const [activeTab, setActiveTab] = useState("login");
   const [fields, setFields] = useState({
     firstName: "",
@@ -16,7 +18,7 @@ const Form = () => {
     loginPassword: "",
   });
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const LOGIN_URL = "http://localhost:8080/api/auth/login";
   const CURRENT_URL = "http://localhost:8080/api/auth/current";
@@ -24,13 +26,12 @@ const Form = () => {
 
   const handleInputChange = ({ target }) => {
     const form = {
-      ...fields, 
-      [target.name]: target.value
-      }
-      setFields(form);
-      console.log("🚀 ~ handleInputChange ~ form:", form)
-       console.log("🚀 ~ handleInputChange ~ target.value :", target.value )
-      
+      ...fields,
+      [target.name]: target.value,
+    };
+    setFields(form);
+    console.log("🚀 ~ handleInputChange ~ form:", form);
+    console.log("🚀 ~ handleInputChange ~ target.value :", target.value);
   };
 
   const handleFocus = (e) => {
@@ -75,24 +76,28 @@ const Form = () => {
       const response = await axios.post(LOGIN_URL, loginData);
       let token = response.data;
 
-      const responseCurrent = await axios.get(CURRENT_URL,{
+      const responseCurrent = await axios.get(CURRENT_URL, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      let client = responseCurrent.data
-      client.token = token
-      
-      dispatch(login(client))
+      let client = responseCurrent.data;
+      client.token = token;
+
+      dispatch(login(client));
+      <Navigate to="/" replace={true} />
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
   };
-  
-  useEffect(() => {}, [])
+
+  if (loggedIn) {
+    return <Navigate to="/" replace={true} />;
+  }
 
   const handleRegister = () => {};
+
   return (
     <div className="form">
       <ul className="tab-group">
@@ -185,7 +190,7 @@ const Form = () => {
         {activeTab === "login" && (
           <div id="login">
             <h1>Welcome Back!</h1>
-            <form  onSubmit={handleLogin}>
+            <form onSubmit={handleLogin}>
               <div className="field-wrap">
                 <label>
                   Email Address<span className="req">*</span>
@@ -228,4 +233,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Login;
