@@ -40,7 +40,7 @@ const Cards = () => {
       <div className="main-cards--container">
         <h2>Credit</h2>
         <div className="cards--container">
-          {cardCredit.length !== 0 ?
+          {cardCredit?.length !== 0 ?
           cardCredit?.map((c, i) => (
             <CardsElement key={i} card={c.color} />
           )) :
@@ -50,7 +50,7 @@ const Cards = () => {
         <h2>Debit</h2>
         <div className="cards--container">
           {
-            cardDebit.length !== 0 ?
+            cardDebit?.length !== 0 ?
             cardDebit?.map((c, i) => (
               <CardsElement key={i} card={c.color} />
             )) :

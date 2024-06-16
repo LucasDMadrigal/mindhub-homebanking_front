@@ -1,12 +1,15 @@
 import React from "react";
 import "../styles/Header.css";
 import LogoutIcon from "../assets/images/logos/logout.svg";
+import GreenBanckLogo from "../assets/images/logos/green_banck_logo_text_1.png"
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/actions/authActions";
 
 const Header = () => {
+
   const dispatch = useDispatch()
+  const { loggedIn } = useSelector((store) => store.auth);
 
   const clickLogout = () => {
     dispatch(logout())
@@ -15,17 +18,19 @@ const Header = () => {
   return (
     <header className="main-header">
       <NavLink to="/">
-        <div className="icon--container"></div>
+        <div className="icon--container">
+          <img src={GreenBanckLogo} alt="" />
+        </div>
       </NavLink>
-      <nav className="">
-        <NavLink
+      <nav className={!loggedIn ? "hidden" :""}>
+        {/* <NavLink
           to="/account"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""
           }
         >
           Accounts
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/cards"
           className={({ isActive, isPending }) =>

@@ -19,12 +19,8 @@ const Home = () => {
       <h1>Welcome, {client?.firstName}!</h1>
       <div className="card--container">
         {client?.accounts.map((account, index) => (
-          <NavLink key={index} to="/account">
-            <AccountCardElement
-              number={account.number}
-              balance={account.balance}
-              creationDate={account.creationDate}
-            />
+          <NavLink key={index} to={`/account/${account.id}`}>
+            <AccountCardElement account={account} />
           </NavLink>
         ))}
       </div>

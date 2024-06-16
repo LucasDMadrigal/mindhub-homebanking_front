@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../styles/login.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+// import { login, loginAsync } from "../redux/actions/authActions";
 import { login } from "../redux/actions/authActions";
-import { Navigate, redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const { loggedIn } = useSelector((store) => store.auth);
@@ -81,12 +82,14 @@ const Login = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      // dispatch(loginAsync(loginData));
 
       let client = responseCurrent.data;
+
       client.token = token;
 
       dispatch(login(client));
-      <Navigate to="/" replace={true} />
+      <Navigate to="/" replace={true} />;
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }

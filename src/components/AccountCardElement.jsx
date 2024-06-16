@@ -1,9 +1,11 @@
 import React from "react";
 import "../styles/Card.css";
-const CardElement = ({number, balance, creationDate}) => {
+const CardElement = ({ account }) => {
+  console.log("🚀 ~ CardElement ~ account:", account);
+  const { number, balance, creationDate } = account;
   return (
     <div className="main-card">
-      <h5> Número de Cuenta: VIN-{number}</h5>
+      <h5> Número de Cuenta: {number}</h5>
       <div className="monto--container">
         <h6>Monto:</h6>
         <span>${balance}</span>

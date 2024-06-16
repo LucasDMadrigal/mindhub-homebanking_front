@@ -68,7 +68,7 @@ function App() {
               }
             />
             <Route
-              path="/account"
+              path="/account/:accountId"
               element={
                 <ProtectedRoute>
                   <Account />
