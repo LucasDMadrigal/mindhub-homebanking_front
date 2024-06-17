@@ -67,11 +67,18 @@ const NewLoan = () => {
       });
   };
 
+  const resetForm = () => {
+    setLoanSelected('');
+    setOriginAccount('');
+    setPaymentsSelected('');
+    setAmount('');
+  };
+
   return (
     <div>
       <div className="form_container">
         <form action="">
-          <h6>Select loan</h6>
+          <h6>Seleccione el tipo de credito:</h6>
           <select onChange={handleChangeLoan} name="" id="">
             <option value="" disabled selected>
               selecciones una opcion
@@ -90,7 +97,7 @@ const NewLoan = () => {
             ))}
           </select>
 
-          <h6>Payment</h6>
+          <h6>Cuotas</h6>
           {loanSelected === "" ? (
             <select name="" id="">
               <option value="" selected disabled>
@@ -103,16 +110,17 @@ const NewLoan = () => {
                 seleccione cantidad de cuotas
               </option>
               {loanSelected.payments.map( payment => (
-              <option value={payment}>
+                <option value={payment}>
                 {payment}
               </option>
               ))}
             </select>
           )}
-          
+          <h6>Monto</h6>
+          <input type="number" name="amount" id="amount" placeholder=""/>
           <div className="button_form--container">
             <button onClick={handleSubmit}>Apply</button>
-            <button>Cancel</button>
+            <button onClick={resetForm}>Cancelttt</button>
           </div>
         </form>
         <div className="image--container">
