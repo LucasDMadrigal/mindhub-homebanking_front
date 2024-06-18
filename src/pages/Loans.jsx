@@ -1,49 +1,66 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-
+import "../styles/Loan.css";
 const Loans = () => {
-  //   Mortgage
-  // Personal
-  // Automotive
-  const loans = [
-    {
-      id: 1,
-      name: "Mortgage",
-      maxAmount: 5000.0,
-      payments: [6, 12, 24],
-    },
-    {
-      id: 2,
-      name: "Personal",
-      maxAmount: 20000.0,
-      payments: [12, 24, 36, 48],
-    },
-    {
-      id: 3,
-      name: "Automotive",
-      maxAmount: 100000.0,
-      payments: [60, 120, 180, 240],
-    },
-  ];
+  const [loans, setLoans] = useState([]);
+  const { token } = useSelector((store) => store.auth);
+
+  useEffect(() => {
+    try {
+      axios
+        .get("http://localhost:8080/api/loans/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log("🚀 ~ Loans ~ response:", res.data);
+          setLoans(res.data);
+        });
+    } catch (err) {
+      console.log("🚀 ~ useEffect ~ err:", err);
+    }
+  }, []);
+
+  let opciones = {
+    style: 'decimal',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+};
+
+// Crear un objeto Intl.NumberFormat para la localización española
+let formateador = new Intl.NumberFormat('es-ES', opciones);
+
+// Formatear el número
+// let numeroFormateado = formateador.format(numero);
 
   return (
     <div>
       {" "}
-      <div>
         <h1>Active Loans</h1>
+      <div className="loan-card--container">
         <ul>
           {loans.map((loan) => (
-            <li key={loan.id}>
+            <li className="card--loan" key={loan.id}>
               <h2>{loan.name}</h2>
-              <p>Max Amount: {loan.maxAmount}</p>
-              <p>Payments: {Array.from(loan.payments).join(", ")}</p>
+              <p>Obtene tu credito de hasta </p>
+              {/* <h3>${loan.maxAmount}</h3> */}
+              <h3>${formateador.format(loan.maxAmount)}</h3>
+              <p>
+                Cuotas:{" "}
+                {Array.from(loan.payments)
+                  .sort((a, b) => a - b)
+                  .join(", ")}
+              </p>
             </li>
           ))}
         </ul>
       </div>
       <NavLink to="/new-loan">
-          <button className="get_new_acc">Solicitar un nuevo credito</button>
-         </NavLink>
+        <button className="get_new_acc">Solicitar un nuevo credito</button>
+      </NavLink>
     </div>
   );
 };
