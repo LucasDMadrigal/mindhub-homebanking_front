@@ -1,7 +1,7 @@
 .main-header {
   height: 17vh;
   width: 100%;
-  background-color: var(--main-black);
+  background-color: var(--main-white);
   padding: 1rem 1.5rem;
   display: flex;
   justify-content: space-between;

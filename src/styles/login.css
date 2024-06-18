@@ -1,31 +1,74 @@
+.form--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .form {
-  background-color: antiquewhite;
+  /* border: 2px solid var(--main-green); */
+  width: 690px;
+  background-color: rgba(132, 135, 144, 0.2);
+}
+
+#signup,
+#login {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#signup {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
+form.login_form,
 form.register_form {
   width: 75%;
-  background-color: aliceblue;
   display: flex;
   flex-flow: wrap;
   justify-content: space-between;
-  padding: .7rem 2rem;
+  padding: 0.7rem 2rem;
+}
+
+form.login_form {
+  flex-direction: column;
 }
 
 .form .tab-group {
   display: flex;
+  justify-content: center;
+}
+.form .tab-group .tab {
+  width: 50%;
+  text-align: center;
+  padding: 1rem;
 }
 
-.field-wrap{
-    margin: 1rem 0;
-    display: flex;
-    flex-direction: column;
+.field-wrap {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.field-wrap input {
+  width: 100%;
+  background-color: transparent;
+  border-bottom: 1px solid var(--main-gray);
+}
+
+.tab.active {
+  background-color: var(--main-green);
+  color: var(--main-white);
+}
+
+.tab:hover {
+  border-bottom: 1px solid var(--main-green);
+}
+
+.button-block {
+  margin: 1rem 0;
+  border: 2px solid var(--main-green);
+  padding: 1rem;
+  width: 100%;
+}
+.button-block:hover {
+  background-color: var(--main-green);
+  color: var(--main-white);
 }

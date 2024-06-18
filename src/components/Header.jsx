@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Header.css";
 import LogoutIcon from "../assets/images/logos/logout.svg";
-import GreenBanckLogo from "../assets/images/logos/green_banck_logo_text_1.png"
+import GreenBanckLogo from "../assets/images/logos/green_banck_logo_text_1_white.png"
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/actions/authActions";
