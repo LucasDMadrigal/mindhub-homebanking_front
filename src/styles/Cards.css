@@ -1,9 +1,33 @@
-.cards--container{
-    display: flex;
-    justify-content: space-around;
+.cards--container {
+  display: flex;
+  justify-content: space-around;
 }
 
-.main-cards--container h2{
-    padding-top: 3rem;
-    padding-bottom: 2rem;
+.main-cards--container h2 {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.card--element {
+  width: 317px;
+  height: 214px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* background-color: gray; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.card-number {
+  margin-bottom: 1.3rem;
+  font-size: larger;
+}
+
+.secound-data {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }

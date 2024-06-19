@@ -8,9 +8,7 @@ import { useSelector } from "react-redux";
 const Account = () => {
   let { accountId } = useParams();
   const { accounts } = useSelector((store) => store.auth.user);
-  console.log("🚀 ~ Account ~ accounts:", accounts);
   let account = accounts.find((acc) => acc.id === Number(accountId));
-  console.log("🚀 ~ Account ~ account:", account.transactions);
 
   const formatoDeFecha = (isoDate) => {
     const date = new Date(isoDate);

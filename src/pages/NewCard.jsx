@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import cardFormImage from "../assets/images/imgs/card_form_image.png";
 import "../styles/NewCard.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { login } from "../redux/actions/authActions";
 
 const NewCard = () => {
   const [cardType, setCardType] = useState("");
   const [cardVariant, setCardVariant] = useState("");
 
   const { token } = useSelector((store) => store.auth);
-
+  const CURRENT_URL = "http://localhost:8080/api/auth/current";
+  const dispatch = useDispatch();
   const handleChangeCardType = (e) => {
     setCardType(e.target.value);
     console.log("🚀 ~ handleChangeCardType ~ e.target.value:", e.target.value)
@@ -41,11 +43,27 @@ const NewCard = () => {
       },
     };
 
+    const actualizarDatos = async () => {
+      const responseCurrent = await axios.get(CURRENT_URL, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("🚀 ~ actualizarDatos ~ responseCurrent:", responseCurrent)
+      let client = responseCurrent.data;
+      console.log("🚀 ~ actualizarDatos ~ responseCurrent.data:", responseCurrent.data)
+
+      client.token = token;
+
+      dispatch(login(client));
+    }
+
     axios
       .post("http://localhost:8080/api/cards/current/create", data, config)
       .then((response) => {
         console.log("Card request successful:", response.data);
         // resetForm(); // Limpiar los campos del formulario después de enviar los datos
+        actualizarDatos();
       })
       .catch((error) => {
         console.error("Error requesting card:", error);
@@ -68,7 +86,7 @@ const NewCard = () => {
             <option value="" disabled selected>seleccione una variante</option>
             <option value="BLACK">BLACK</option>
             <option value="GOLD">GOLD</option>
-            <option value="PLATINUM">PLATINUM</option>
+            <option value="TITANIUM">TITANIUM</option>
           </select>
           <div className="button_form--container">
             <button onClick={handleSubmit}>Apply</button>

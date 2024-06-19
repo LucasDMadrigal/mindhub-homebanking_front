@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Cards.css";
-import BlackCard from "../assets/images/imgs/black_card.png";
-import GoldCard from "../assets/images/imgs/gold_card.png";
-import PlatinumCard from "../assets/images/imgs/platinum_card.png";
 import { NavLink } from "react-router-dom";
 import CardsElement from "../components/CardsElement";
 import { useSelector } from "react-redux";
@@ -42,7 +39,7 @@ const Cards = () => {
         <div className="cards--container">
           {cardCredit?.length !== 0 ?
           cardCredit?.map((c, i) => (
-            <CardsElement key={i} card={c.color} />
+            <CardsElement user={user} key={i} card={c} />
           )) :
           <h2>NO HAY TARJETAS PARA MOSTRAR</h2> 
         }
@@ -52,7 +49,7 @@ const Cards = () => {
           {
             cardDebit?.length !== 0 ?
             cardDebit?.map((c, i) => (
-              <CardsElement key={i} card={c.color} />
+              <CardsElement user={user} key={i} card={c} />
             )) :
             <h2>NO HAY TARJETAS PARA MOSTRAR</h2> 
           }

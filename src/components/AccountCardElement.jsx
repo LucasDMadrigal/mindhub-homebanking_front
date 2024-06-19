@@ -1,7 +1,6 @@
 import React from "react";
-import "../styles/Card.css";
+import "../styles/AccountCard.css";
 const CardElement = ({ account }) => {
-  console.log("🚀 ~ CardElement ~ account:", account);
   const { number, balance, creationDate } = account;
   return (
     <div className="main-card">
