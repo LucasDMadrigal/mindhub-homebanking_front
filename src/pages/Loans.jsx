@@ -10,7 +10,7 @@ const Loans = () => {
   useEffect(() => {
     try {
       axios
-        .get("http://localhost:8080/api/loans/", {
+        .get("https://mindhub-homebanking.onrender.com/api/loans/", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

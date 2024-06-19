@@ -17,7 +17,7 @@ const NewLoan = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/loans/", {
+      .get("https://mindhub-homebanking.onrender.com/api/loans/", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => setLoans(response.data));
@@ -58,7 +58,7 @@ const NewLoan = () => {
     };
 
     axios
-      .post("http://localhost:8080/api/loans/current", data, config)
+      .post("https://mindhub-homebanking.onrender.com/api/loans/current", data, config)
       .then((response) => {
         console.log("Loan applied successfully:", response.data);
       })

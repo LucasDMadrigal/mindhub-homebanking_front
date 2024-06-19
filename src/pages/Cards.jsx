@@ -7,7 +7,7 @@ const Cards = () => {
   const [cards, setCards] = useState();
   const [cardDebit, setCardDebit] = useState([]);
   const [cardCredit, setCardCredit] = useState([]);
-  // const url = "http://localhost:8080/api";
+  // const url = "https://mindhub-homebanking.onrender.com/api";
   // useEffect(() => {
   //   fetch(`${url}/clients/1`)
   //     .then((res) => res.json())

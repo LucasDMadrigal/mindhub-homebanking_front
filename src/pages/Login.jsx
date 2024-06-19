@@ -19,9 +19,9 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  const LOGIN_URL = "http://localhost:8080/api/auth/login";
-  const CURRENT_URL = "http://localhost:8080/api/auth/current";
-  const REGISTER_URL = "http://localhost:8080/api/auth/register";
+  const LOGIN_URL = "https://mindhub-homebanking.onrender.com/api/auth/login";
+  const CURRENT_URL = "https://mindhub-homebanking.onrender.com/api/auth/current";
+  const REGISTER_URL = "https://mindhub-homebanking.onrender.com/api/auth/register";
 
   const handleInputChange = ({ target }) => {
     const form = {

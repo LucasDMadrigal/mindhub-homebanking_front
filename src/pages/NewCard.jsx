@@ -10,7 +10,7 @@ const NewCard = () => {
   const [cardVariant, setCardVariant] = useState("");
 
   const { token } = useSelector((store) => store.auth);
-  const CURRENT_URL = "http://localhost:8080/api/auth/current";
+  const CURRENT_URL = "https://mindhub-homebanking.onrender.com/api/auth/current";
   const dispatch = useDispatch();
   const handleChangeCardType = (e) => {
     setCardType(e.target.value);
@@ -59,7 +59,7 @@ const NewCard = () => {
     }
 
     axios
-      .post("http://localhost:8080/api/cards/current/create", data, config)
+      .post("https://mindhub-homebanking.onrender.com/api/cards/current/create", data, config)
       .then((response) => {
         console.log("Card request successful:", response.data);
         // resetForm(); // Limpiar los campos del formulario después de enviar los datos
