@@ -10,16 +10,20 @@ const NewCard = () => {
   const [cardVariant, setCardVariant] = useState("");
 
   const { token } = useSelector((store) => store.auth);
-  const CURRENT_URL = "https://mindhub-homebanking.onrender.com/api/auth/current";
+  const CURRENT_URL =
+    "https://mindhub-homebanking.onrender.com/api/auth/current";
   const dispatch = useDispatch();
   const handleChangeCardType = (e) => {
     setCardType(e.target.value);
-    console.log("🚀 ~ handleChangeCardType ~ e.target.value:", e.target.value)
+    console.log("🚀 ~ handleChangeCardType ~ e.target.value:", e.target.value);
   };
 
   const handleChangeCardVariant = (e) => {
     setCardVariant(e.target.value);
-    console.log("🚀 ~ handleChangeCardVariant ~ e.target.value:", e.target.value)
+    console.log(
+      "🚀 ~ handleChangeCardVariant ~ e.target.value:",
+      e.target.value
+    );
   };
 
   // const resetForm = (e) =>{
@@ -32,10 +36,10 @@ const NewCard = () => {
     e.preventDefault();
 
     const data = {
-      cardType:cardType,
-      cardColor:cardVariant,
+      cardType: cardType,
+      cardColor: cardVariant,
     };
-    console.log("🚀 ~ handleSubmit ~ data:", data)
+    console.log("🚀 ~ handleSubmit ~ data:", data);
 
     const config = {
       headers: {
@@ -49,17 +53,24 @@ const NewCard = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("🚀 ~ actualizarDatos ~ responseCurrent:", responseCurrent)
+      console.log("🚀 ~ actualizarDatos ~ responseCurrent:", responseCurrent);
       let client = responseCurrent.data;
-      console.log("🚀 ~ actualizarDatos ~ responseCurrent.data:", responseCurrent.data)
+      console.log(
+        "🚀 ~ actualizarDatos ~ responseCurrent.data:",
+        responseCurrent.data
+      );
 
       client.token = token;
 
       dispatch(login(client));
-    }
+    };
 
     axios
-      .post("https://mindhub-homebanking.onrender.com/api/cards/current/create", data, config)
+      .post(
+        "https://mindhub-homebanking.onrender.com/api/cards/current/create",
+        data,
+        config
+      )
       .then((response) => {
         console.log("Card request successful:", response.data);
         // resetForm(); // Limpiar los campos del formulario después de enviar los datos
@@ -77,20 +88,24 @@ const NewCard = () => {
         <form action="">
           <h6>Select card type</h6>
           <select onChange={handleChangeCardType} name="type" id="type">
-            <option value="" disabled selected>seleccione un tipo de tarjeta</option>
+            <option value="" disabled selected>
+              seleccione un tipo de tarjeta
+            </option>
             <option value="DEBIT">DEBIT</option>
             <option value="CREDIT">CREDIT</option>
           </select>
           <h6>Select card color</h6>
           <select onChange={handleChangeCardVariant} name="color" id="color">
-            <option value="" disabled selected>seleccione una variante</option>
+            <option value="" disabled selected>
+              seleccione una variante
+            </option>
             <option value="BLACK">BLACK</option>
             <option value="GOLD">GOLD</option>
             <option value="TITANIUM">TITANIUM</option>
           </select>
           <div className="button_form--container">
             <button onClick={handleSubmit}>Apply</button>
-            <button type="button"  >Cancel</button>
+            <button type="button">Cancel</button>
           </div>
         </form>
         <div className="image--container">

@@ -13,25 +13,22 @@ const Account = () => {
   const formatoDeFecha = (isoDate) => {
     const date = new Date(isoDate);
 
-    // Obtiene los componentes de la fecha
     const day = date.getDate();
-    const month = date.getMonth() + 1; // Los meses son indexados desde 0, por lo que se debe sumar 1
-    const year = date.getFullYear() % 100; // Obtener los dos últimos dígitos del año
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear() % 100;
 
-    // Formatea los componentes para asegurarse de que siempre tienen dos dígitos
     const formattedDay = String(day).padStart(2, "0");
     const formattedMonth = String(month).padStart(2, "0");
     const formattedYear = String(year).padStart(2, "0");
 
-    // Construye la cadena final
     const formattedDate = `${formattedDay}/${formattedMonth}/${formattedYear}`;
 
-    return formattedDate; // "16/06/24"
+    return formattedDate;
   };
 
   return (
     <>
-      <h1>Cuenta Número: VIN-00001</h1>
+      <h1>Cuenta Número: {account.number}</h1>
       <div className="data-container">
         <AccountCardElement account={account} />
         <div className={`table--container`}>
@@ -83,20 +80,3 @@ const Account = () => {
 };
 
 export default Account;
-
-// Type
-// Amount
-// Data
-// Description
-// CREDIT
-// $25,000.0
-// 24/04/23
-// Test credit
-// DEBIT
-// $5,000.0
-// 24/04/23
-// Test debit
-// CREDIT
-// $200.0
-// 24/04/23
-// Coffe. VIN-0859985
